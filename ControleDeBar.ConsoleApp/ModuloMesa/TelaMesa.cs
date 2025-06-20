@@ -6,6 +6,7 @@ public class TelaMesa : TelaBase<Mesa>, ITela
 {
     public TelaMesa(RepositorioMesa repositorioMesa) : base("Mesa", repositorioMesa)
     {
+
     }
 
     public override void VisualizarRegistros(bool exibirCabecalho)
