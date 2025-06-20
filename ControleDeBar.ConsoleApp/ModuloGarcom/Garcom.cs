@@ -6,10 +6,17 @@ namespace ControleDeBar.ConsoleApp.ModuloGarcom
     {
         public string Nome { get; set; }
         public string Cpf { get; set; }
+        public Garcom(string nome, string cpf)
+        {
+            Nome = nome;
+            Cpf = cpf;
+        }
+
 
         public override void AtualizarRegistro(Garcom registroAtualizado)
         {
-            throw new NotImplementedException();
+            Nome = registroAtualizado.Nome;
+            Cpf = registroAtualizado.Cpf;
         }
 
         public override string Validar()

@@ -18,12 +18,75 @@ namespace ControleDeBar.ConsoleApp.ModuloGarcom
 
         public override void VisualizarRegistros(bool exibirCabecalho)
         {
-            throw new NotImplementedException();
+            if (exibirCabecalho)
+                ExibirCabecalho();
+
+            Console.WriteLine("Visualização de Garçons");
+
+            Console.WriteLine();
+
+            Console.WriteLine(
+                "{0, -10} | {1, -30} | {2, -30}",
+                "Id", "Nome", "CPF"
+            );
+
+            Garcom[] garcons = repositorio.SelecionarRegistros();
+
+            for (int i = 0; i < garcons.Length; i++)
+            {
+                Garcom g = garcons[i];
+
+                if (g == null)
+                    continue;
+
+
+                Console.WriteLine(
+                  "{0, -10} | {1, -30} | {2, -30}",
+                    g.Id, g.Nome, g.Cpf
+                );
+            }
+
+            ApresentarMensagem("Digite ENTER para continuar...", ConsoleColor.DarkYellow);
         }
 
         protected override Garcom ObterDados()
         {
-            throw new NotImplementedException();
+            bool conseguiuConverter = false;
+
+            string nome = "";
+
+            while (!conseguiuConverter)
+            {
+                Console.Write("Digite o nome do garçom: ");
+                nome = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(nome) || nome.Length < 3)
+                {
+                    ApresentarMensagem("Digite um nome válido!", ConsoleColor.DarkYellow);
+                    ObterDados();
+                }
+                else
+                    conseguiuConverter = true;
+            }
+
+            bool conseguiuConverterCpf = false;
+
+            string cpf = "";
+
+            while (!conseguiuConverterCpf)
+            {
+                Console.Write("Digite o CPF do garçom: ");
+                cpf = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(cpf) || cpf.Length < 14)
+                {
+                    ApresentarMensagem("Digite um CPF válido!", ConsoleColor.DarkYellow);
+                    ObterDados();
+                }
+                else
+                    conseguiuConverterCpf = true;
+            }
+            return new Garcom(nome, cpf);
         }
 
         public override void CadastrarRegistro()
