@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace ControleDeBar.ConsoleApp.ModuloProduto
 {
-    internal class Produto : EntidadeBase<Produto>
+    public class Produto : EntidadeBase<Produto>
     {
         public string Nome { get; set; }
-        public decimal Preco { get; set; }
+        public decimal Valor { get; set; }
 
-        public Produto(string nome, decimal preco)
+        public Produto(string nome, decimal valor)
         {
             Nome = nome;
-            Preco = preco;
+            Valor = valor;
         }
 
   
         public override void AtualizarRegistro(Produto registroAtualizado)
         {
             Nome = registroAtualizado.Nome;
-            Preco = registroAtualizado.Preco;
+            Valor = registroAtualizado.Valor;
         }
 
         public override string Validar()
@@ -32,7 +32,7 @@ namespace ControleDeBar.ConsoleApp.ModuloProduto
             if (Nome.Length < 2 || Nome.Length > 100)
                 erros += "O campo \"Nome\" deve conter entre 2 e 100 caracteres.";
 
-            if (Decimal.Round(Preco, 2) != Preco)
+            if (Decimal.Round(Valor, 2) != Valor)
                 erros += "O campo \"Preço\" deve conter 2 casas decimais.";
 
             return erros;

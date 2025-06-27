@@ -2,7 +2,7 @@
 
 namespace ControleDeBar.ConsoleApp.ModuloGarcom
 {
-    internal class Garcom : EntidadeBase<Garcom>
+    public class Garcom : EntidadeBase<Garcom>
     {
         public string Nome { get; set; }
         public string Cpf { get; set; }

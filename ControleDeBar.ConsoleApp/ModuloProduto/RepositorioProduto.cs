@@ -2,4 +2,4 @@
 using System;
 using System.Collections.Generic;
 namespace ControleDeBar.ConsoleApp.ModuloProduto;
-internal class RepositorioProduto : RepositorioBase<Produto>;
+public class RepositorioProduto : RepositorioBase<Produto>;

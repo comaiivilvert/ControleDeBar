@@ -1,4 +1,5 @@
-﻿using ControleDeBar.ConsoleApp.ModuloGarcom;
+﻿using ControleDeBar.ConsoleApp.ModuloConta;
+using ControleDeBar.ConsoleApp.ModuloGarcom;
 using ControleDeBar.ConsoleApp.ModuloMesa;
 using ControleDeBar.ConsoleApp.ModuloProduto;
 
@@ -10,19 +11,42 @@ public class TelaPrincipal
 
     private RepositorioMesa repositorioMesa;
     private TelaMesa telaMesa;
+
     private RepositorioGarcom repositorioGarcom;
     private TelaGarcom telaGarcom;
+
     private RepositorioProduto repositorioProduto;
     private TelaProduto telaProduto;
+
+    private RepositorioConta repositorioConta;
+    private TelaConta telaConta;
 
     public TelaPrincipal()
     {
         repositorioMesa = new RepositorioMesa();
-        telaMesa = new TelaMesa(repositorioMesa);
         repositorioGarcom = new RepositorioGarcom();
-        telaGarcom = new TelaGarcom(repositorioGarcom);
         repositorioProduto = new RepositorioProduto();
+        repositorioConta = new RepositorioConta();
+
+        telaMesa = new TelaMesa(repositorioMesa);
+        telaGarcom = new TelaGarcom(repositorioGarcom);
         telaProduto = new TelaProduto(repositorioProduto);
+
+        telaConta = new TelaConta(
+            repositorioConta,
+            repositorioProduto,
+            repositorioMesa,
+            repositorioGarcom
+        );
+
+        // Dados de teste
+        Mesa mesa = new Mesa(1, 3);
+        Garcom garcom = new Garcom("Gerson", "012.333.322-23");
+        Produto produto = new Produto("Cerveja Brahma 350ml", 6.50m);
+
+        repositorioMesa.CadastrarRegistro(mesa);
+        repositorioGarcom.CadastrarRegistro(garcom);
+        repositorioProduto.CadastrarRegistro(produto);
     }
 
     public void ApresentarMenuPrincipal()
@@ -59,7 +83,7 @@ public class TelaPrincipal
             return telaProduto;
 
         if (opcaoEscolhida == '4')
-            return null;
+            return telaConta;
 
         return null;
     }

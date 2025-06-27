@@ -7,4 +7,4 @@ using System.Threading.Tasks;
 
 namespace ControleDeBar.ConsoleApp.ModuloGarcom;
 
-    internal class RepositorioGarcom : RepositorioBase<Garcom>;
+    public class RepositorioGarcom : RepositorioBase<Garcom>;

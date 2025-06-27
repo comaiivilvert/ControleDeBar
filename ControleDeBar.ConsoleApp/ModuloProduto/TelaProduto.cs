@@ -10,7 +10,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ControleDeBar.ConsoleApp.ModuloProduto
 {
-    internal class TelaProduto : TelaBase<Produto>, ITela
+    public class TelaProduto : TelaBase<Produto>, ITela
     {
         public TelaProduto(RepositorioProduto repositorioProduto) : base("Produto", repositorioProduto)
         {
@@ -42,7 +42,7 @@ namespace ControleDeBar.ConsoleApp.ModuloProduto
 
                 Console.WriteLine(
                   "{0, -10} | {1, -30} | {2, -30}",
-                    p.Id, p.Nome, p.Preco.ToString("C2")
+                    p.Id, p.Nome, p.Valor.ToString("C2")
                 );
             }
 
